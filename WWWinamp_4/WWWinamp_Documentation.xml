@@ -1,0 +1,597 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WWWinamp</name>
+    </assembly>
+    <members>
+        <member name="F:ENusbaum.Applications.WWWinamp.Forms.frmAddUser.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Forms.frmAddUser.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Forms.frmAddUser.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.LogHandler.LogError(System.Exception)">
+            <summary>
+                Error Handler for Errors without Extra Information being passed
+            </summary>
+            <param name="e">Exception -- Contains the Exception</param>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.LogHandler.LogError(System.Exception,System.String)">
+            <summary>
+                Error Handler for Errors with Extra Information
+            </summary>
+            <param name="e">Exception -- Contains the Exception</param>
+            <param name="sExtraInformation">string -- Extra Information to be included in the error report</param>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.LogHandler.WriteAccessLog(System.String)">
+            <summary>
+                Logs information to the ACCESS.LOG file
+            </summary>
+            <param name="sLogItem">string -- Item to be logged</param>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.Server_GetMimeType(System.String)">
+            <summary>
+                Parses the requested file extension and returns the MIME type of that file.
+            </summary>
+            <param name="sRequestedFile">string -- File requested by client</param>
+            <returns>string -- MIME type of requested file</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.Client_IsRequestingRestrictedFile(System.String)">
+            <summary>
+                Checks to see if the requested file is restricted, such as an .htpasswd file
+            </summary>
+            <param name="sHTTPRequest"></param>
+            <returns>bool -- true if the file requested is restricted and forbidden</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.ServerHTTPResponse_Header(System.String,System.Int64,System.String,System.Net.Sockets.Socket@,System.String)">
+            <summary>
+                Sends the HTTP Response header to the client connection
+            </summary>
+            <param name="sHTTPRequest"></param>
+            <param name="iTotBytes"></param>
+            <param name="sStatusCode"></param>
+            <param name="mySocket"></param>
+            <param name="sFileName"></param>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.ServerHTTPResponse_SendData(System.Byte[],System.Net.Sockets.Socket@)">
+            <summary>
+                Sends the data to the provided socket.
+            </summary>
+            <param name="bSendData"></param>
+            <param name="mySocket"></param>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.CompressData(System.Byte[])">
+            <summary>
+                Depedning on the Value HTTPCompressionType (defined in WWWINAMP.XML), it will
+                apply GZIP or DEFLATE compression to the byte array passed to CompressData().
+            </summary>
+            <param name="bInput"></param>
+            <returns>byte[] -- byte array containing compressed data</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.CompressionAllowed(System.String)">
+            <summary>
+                Checks to see if the file being requested is allowed to be compressed.
+                Defined in app.config under tag WWWinamp.HTTP.CompressionFileTypes
+            </summary>
+            <param name="sFileName"></param>
+            <returns>bool:True if the file is allowed to be compressed using CompressData()</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.ClientHTTPRequest_AcceptedEncoding(System.String)">
+            <summary>
+                Inspects the Accept-Encoding header in the HTTP Request to see if the client can
+                support the HTTP compression method specified in app.config under WWWinamp.HTTP.CompressionMode (if specified).
+            </summary>
+            <param name="sHTTPRequest"></param>
+            <returns>bool:true -- Client supports currently specified compression method</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.ClientHTTPRequest_HTTPVersion(System.String)">
+            <summary>
+                Extracts the HTML version supported by the client browser.
+            </summary>
+            <param name="sHTTPRequest"></param>
+            <returns>string -- HTTP/1.0 or HTTP/1.1 usually</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.ClientHTTPRequest_RequestedFile(System.String)">
+            <summary>
+                Extracts the Requested file name and path from the HTTP request. 
+                If the URL is just a path (i.e.: http://www.enusbaum.com/), then 
+                it'll return the default file for that path, which is specified
+                in WWWINAMP.XML.
+            </summary>
+            <param name="sHTTPRequest"></param>
+            <returns>string -- file name of file requested in the URL (i.e.: index.html)</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.ClientHTTPRequest_RequestedFileLocalPath(System.String)">
+            <summary>
+                Extracts the location of the file requested (i.e.: http://www.enusbaum.com/images/)
+                and returns the physical path to that folder (i.e.: c:\WWWinamp\images\).
+            </summary>
+            <param name="sHTTPRequest"></param>
+            <returns>string -- physical path to folder specified in the URL (i.e.: c:\WWWinamp\images\)</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.ClientHTTPRequest_RequestedFileURLPath(System.String)">
+            <summary>
+                Extracts the directory requested in the URL
+            </summary>
+            <param name="sHTTPRequest"></param>
+            <returns>string -- containing the directory requeted in the URL (i.e.: http://www.enusbaum.com/images/test.gif would return /images/)</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.ClientHTTPRequest_Variables(System.String)">
+            <summary>
+                Extracts the URL variable or POST string from the HTTP request.
+            </summary>
+            <param name="sHTTPRequest"></param>
+            <returns>string -- string from the URL after the "?", containing variables and their values.</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.ClientHTTPRequest_VariableValue(System.String,System.String)">
+            <summary>
+                Extracts the Value of a single variable from the variable string passed
+            </summary>
+            <param name="sVariables">string -- Variable string generated by ClientHTTPRequest_Variables()</param>
+            <param name="sVariable">string -- Variable who's value is to be returned</param>
+            <returns>string -- Value of sVariable</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.ClientHTTPRequest_ProcessAuthWWWinampAdmin(System.String)">
+            <summary>
+                Inspects the Authorization header to see if the user is logged in as an admin.
+                The username and password is specified in WWWINAMP.XML
+            </summary>
+            <param name="sHTTPRequest"></param>
+            <returns>bool:true -- User is logged in as admin</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.ClientHTTPRequest_ProcessHTTPAuth(System.String,System.String)">
+            <summary>
+                Authenticates user based on specified .htpasswd file
+            </summary>
+            <param name="sHTTPRequest"></param>
+            <param name="sPasswordFile"></param>
+            <returns>bool -- true is user was authenticated successfully</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.Convert_PlaintextAuthToSHAAuth(System.String)">
+            <summary>
+                Takes the input of a raw Auth (user:password) and converts it to an SHA1 Auth (user:{SHA1}hash)
+            </summary>
+            <param name="sAuth"></param>
+            <returns>string -- containing the auth string with an SHA1 hashed password</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.ClientHTTPRequest_HTTPAuth(System.String)">
+            <summary>
+                Verifies that a Authentication is present in the current HTTP Request
+            </summary>
+            <param name="sHTTPRequest"></param>
+            <returns>bool -- True is the user is Authenticating or Authentication is present in the HTTP Request Header</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.ClientHTTPRequest_UserAgent(System.String)">
+            <summary>
+                Extracts the USER-AGENT header from the HTTP Request
+            </summary>
+            <param name="sHTTPRequest"></param>
+            <returns>string -- containing the USER-AGENT from the HTTP Request</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.ClientHTTPRequest_RequestedURL(System.String)">
+            <summary>
+                Extracts the URL requested in the HTTP Request
+            </summary>
+            <param name="sHTTPRequest"></param>
+            <returns>string -- containing the URL requested (i.e. /images/file1.jpg)</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.ClientHTTPRequest_RequestType(System.String)">
+            <summary>
+                Extracts the HTTP Request Type 
+            </summary>
+            <param name="sHTTPRequest"></param>
+            <returns>string -- containing the HTTP Request Type (GET/POST or UNKNOWN)</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.ClientHTTPRequest_Validate(System.String,System.Net.Sockets.Socket@)">
+            <summary>
+                Validates an HTTP Request Header to see if it meets the minimum requirements to be processed
+            </summary>
+            <param name="sHTTPRequest">string -- HTTP Request Header from Client</param>
+            <param name="mySocket">Socket -- Socket connection to Client</param>
+            <returns>bool -- false if HTTP request cannot be validated or contains incorrect data</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.ClientHTTPRequest_ValidateURL(System.String)">
+            <summary>
+                Verified that the URL requested is valid and is not trying to exploit anything
+            </summary>
+            <param name="sHTTPRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.ClientHTTPRequest_ProcessWinAmpCommand(System.String,System.Net.Sockets.Socket@)">
+            <summary>
+                Processes a WinAmp Command passed in the URL or POST Variables as "q" (i.e. ?q=play)
+            </summary>
+            <param name="sHTTPRequest"></param>
+            <param name="mySocket"></param>
+            <returns>bool -- successfully executed command</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.ClientHTTPRequest_ProcessWWWinampCommand(System.String,System.Net.Sockets.Socket@)">
+            <summary>
+                Processes a command that is for WWWinamp (such as ?login)
+            </summary>
+            <param name="sHTTPRequest"></param>
+            <param name="mySocket"></param>
+            <returns>bool -- true is command is executed successfuly</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.ClientHTTPRequest_SearchQuery(System.String)">
+            <summary>
+                Extracts the Search Query submitted by the URL/POST
+            </summary>
+            <param name="sHTTPRequest">string -- String containing the HTTP Request</param>
+            <returns>string -- search query submitted</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.Server_FindFirstFileByExt(System.String,System.String)">
+            <summary>
+                This function returns the first file found in a folder with the specified File Extension
+            </summary>
+            <param name="sDirectoryName">string -- Directory to be searched</param>
+            <param name="sFileExt">string -- File Extension to search for</param>
+            <returns></returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.Server_ConvertDateTimeToDirectoryListDateTime(System.DateTime)">
+            <summary>
+                Accepts a DateTime input and returns a string containing the date and time in directory list format
+            </summary>
+            <param name="dtInputDate"></param>
+            <returns>string -- date and time in "dd-MMM-YYYY HH:mm" format.</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.Server_ConvertFileSizeToDirecotyListFileSize(System.Int64)">
+            <summary>
+                Takes a file size and converts it to the format used in a directory list
+            </summary>
+            <param name="lFileSize"></param>
+            <returns>string -- formated as "####K/M/G"</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.ServerHTTPResponse_SendContent(System.String,System.Net.Sockets.Socket@)">
+            <summary>
+                Reads HTTP header and sends data requested to the client browser
+            </summary>
+            <param name="sHTTPRequest"></param>
+            <param name="mySocket"></param>
+            <returns>bool -- true if the data was sent successfully.</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.ServerHTTPResponse_Error(System.String,System.String,System.String,System.String,System.Net.Sockets.Socket@)">
+            <summary>
+                Sends an HTTP error message to the Client Browser
+            </summary>
+            <param name="sErrorMessage">string -- Containing Error message to be displayed on the page</param>
+            <param name="sStatusCode">string -- Status code of HTTP Error</param>
+            <param name="sRequestedLocalFile">string -- Local File being requested</param>
+            <param name="sHTTPRequest">string -- HTTP Request</param>
+            <param name="mySocket">ref Socket -- Socket object of Client Connection</param>
+            <returns></returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.ServerHTTPResponse_GenerateDirectoryList(System.String)">
+            <summary>
+                Generates HTML required to display a directory list
+            </summary>
+            <param name="sHTTPRequest"></param>
+            <returns>byte[] -- containing HTML for Directory List</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.ClientHTTPRequest_EmbeddedResource(System.String)">
+            <summary>
+                Checks to see if the URL Requested is an embedded resource
+            </summary>
+            <param name="sHTTPRequest"></param>
+            <returns>bool - true is the resource requested is embedded in the assembly</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.ClientHTTPRequest_RequestedFileExists(System.String)">
+            <summary>
+                Checks to see if the File or Directory requeted in the URL exists on the server
+            </summary>
+            <param name="sHTTPRequest"></param>
+            <returns>bool -- true is the file or directory is found</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.ClientHTTPRequest_CheckWinAmpCommandPermission(System.String,System.String)">
+            <summary>
+                Checks to see if the user has access to execute the requested command
+            </summary>
+            <param name="sHTTPRequest"></param>
+            <param name="sCommand"></param>
+            <returns>bool -- returns true if the user has access to execute the command</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.WWWinampListen">
+            <summary>
+                Main WWWinamp HTTP Listener Thread
+            </summary>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WebServer.WWWinampAcceptConnection">
+            <summary>
+                This Function is fired off when a new HTTP connection is accepted. This is the main method for a HTTP Request.
+            </summary>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WCFService.WWWinampWCFService.WWWinampCommand(ENusbaum.Applications.WWWinamp.Classes.WCFService.WWWinampQuery)">
+            <summary>
+                This Method allows a client to execute a command to WWWinamp
+            </summary>
+            <param name="myQuery"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WCFService.WWWinampWCFService.WWWinampGetLibrary(ENusbaum.Applications.WWWinamp.Classes.WCFService.WWWinampQuery)">
+            <summary>
+                Returns the WWWinamp Library within a WWWinampLibrary Object
+            </summary>
+            <param name="myQuery">WWWinampQuery -- WWWinamp Query received by the WWWinamp WCF Service</param>
+            <returns></returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WCFService.WWWinampWCFService.WWWinampGetPlaylist(ENusbaum.Applications.WWWinamp.Classes.WCFService.WWWinampQuery)">
+            <summary>
+                WCF Service to return the current Playlist
+            </summary>
+            <param name="myQuery">WWWinampQuery -- Contains the WWWinamp Query</param>
+            <returns>WWWinampPlaylist -- Contains the current Winamp Playlist</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Forms.Program.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.LibraryController.BuildMediaLibrary">
+            <summary>
+                Scans the specified folder and subfolders for media and saves them to dbDatabase[]::mediaDB[]
+            </summary>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.LibraryController.WalkDirectory(System.IO.DirectoryInfo)">
+            <summary>
+                Walks the specified directory saving files found to dbDatabase[]::mediaDB[] and also walks subdirectories
+            </summary>
+            <param name="directory">DirectoryInfo -- Directory to walk</param>
+        </member>
+        <member name="F:ENusbaum.Applications.WWWinamp.Forms.frmMain.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Forms.frmMain.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Forms.frmMain.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Forms.frmMain.runningToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+                Start WCF Server
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Forms.frmMain.stoppedToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+                Stop WCF Server
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Forms.frmMain.startedToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+                Start Web Server
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Forms.frmMain.stoppedToolStripMenuItem1_Click(System.Object,System.EventArgs)">
+            <summary>
+                Stop Web Server
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.ScriptParser.ProcessScript(System.Byte[],System.String,System.String,System.Boolean)">
+            <summary>
+                Processes the passed script for items such as Include Tags and Script Tags
+            </summary>
+            <param name="bFileContent">byte[] -- Input script</param>
+            <param name="sFilePath">string -- Current path of the script (used for pathing in includes)</param>
+            <param name="sInputVariable">string -- Input variable, most times the search term</param>
+            <param name="blIsAdmin">bool -- true if the current user requesting the script is logged in as a WWWinamp admin</param>
+            <returns>byte[] -- Processed script</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.ScriptParser.GeneratePlaylist">
+            <summary>
+                Processes the Playlist WWA files and Generates the WWWinamp Playlist for HTTP Requests
+            </summary>
+            <returns>string -- String Containing the Parsed and Generated Playlist HTML</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.ScriptParser.GenerateLibrary(System.String)">
+            <summary>
+                Processes the Library WWA files and Generates the WWWinamp Library for HTTP Requests
+            </summary>
+            <param name="sInputString">string -- URL Paramiters</param>
+            <returns>string -- String Containing the Parsed and Generated Library HTML</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.ScriptParser.ProcessScriptTags(System.String,System.String,System.Boolean)">
+            <summary>
+                Processes the passed script for any script tags including Library and Playlist items
+            </summary>
+            <param name="sFileContent">string -- Script to be parsed</param>
+            <param name="sInputVariable">string -- Input Variable, usually search term</param>
+            <param name="blIsAdmin">bool -- Is the current user requesting this page a WWWinamp Admin</param>
+            <returns>string -- Parsed script</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.ScriptParser.FilterAdmin(System.Text.StringBuilder)">
+            <summary>
+                Strips any tags/html/text between the |ADM| tags if the user is not logged in as a WWWinamp Admin
+            </summary>
+            <param name="sParsedInput">string -- Script to be parsed</param>
+            <returns>string -- Parsed script</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.ScriptParser.FilterNonAdmin(System.Text.StringBuilder)">
+            <summary>
+                Strips any tags/html/text between the |!ADM| tags if the user is logged in as a WWWinamp Admin
+            </summary>
+            <param name="sParsedInput">string -- Script to be parsed</param>
+            <returns>string -- Parsed script</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.ScriptParser.ProcessIncludeTags(System.String,System.String)">
+            <summary>
+                Handler for processing include tags (<!--#INCLUDE FILE=""-->) within skin files.
+            </summary>
+            <param name="sInputScript">string: string containing the data read from the file requested.</param>
+            <param name="sFilePath">string: string containing the physical path of the file requested.</param>
+            <returns><b>string:</b> string containing the current HTML output for the file to be sent to the browser</returns>
+        </member>
+        <member name="T:ENusbaum.Applications.WWWinamp.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:ENusbaum.Applications.WWWinamp.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:ENusbaum.Applications.WWWinamp.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.Functions.ReadEmbeddedResource(System.String)">
+            <summary>
+                Reads a specified Embedded Resrouce from the WWWinamp Assembly and stores it in a byte[]
+            </summary>
+            <param name="sFileName"></param>
+            <returns>byte[] -- containing data from specified Embedded Resource</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.Functions.ReadLocalFile(System.String,System.Int32)">
+            <summary>
+                Reads the first X bytes specified from the file specified into a byte[]
+            </summary>
+            <param name="sLocalFile"></param>
+            <param name="iBytesToRead"></param>
+            <returns>byte[] - first x bytes of file specified</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.Functions.ReadLocalFileToByteArray(System.String)">
+            <summary>
+                Reads the file specified into a byte[]
+            </summary>
+            <param name="sLocalFile"></param>
+            <returns>byte[] - contents of file specified</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.Functions.ReadLocalFileToMemoryStream(System.String)">
+            <summary>
+                Reads the specified file and returns it as a MemoryStream
+            </summary>
+            <param name="sLocalFile">string -- path to the local file</param>
+            <returns>MemoryStream -- containing the contents the file to be read</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.Functions.Create_SHA1Hash(System.Byte[])">
+            <summary>
+                Returns an SHA1 hash of the byte array passed to it
+            </summary>
+            <param name="byInput">byte[] -- byte array to create SHA1 from</param>
+            <returns>byte[] -- byte array containing the SHA1 hash</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.Functions.Create_MD5Hash(System.Byte[])">
+            <summary>
+                Returns an MD5 has of the byte array passed to it
+            </summary>
+            <param name="byInput">byte[] -- byte array to create MD5 from</param>
+            <returns>byte[] -- byte array containing the MD5 hash</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WinAmpController.GetWinampHandles">
+            <summary>
+                Looks for a running copy of WinAmp and grabs the handles for it.
+            </summary>
+            <returns>bool -- true if handles were found</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WinAmpController.WinampCommand(System.String,System.String)">
+            <summary>
+                Sends a command to Winamp using it's publically visible IPC.
+            </summary>
+            <param name="sParsedCommand"></param>
+            <param name="sPassedValue"></param>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WinAmpController.WinAmpStatus(System.String)">
+            <summary>
+                Detects commands to return status' from certain parts of WinAmp
+            </summary>
+            <param name="sCommand">string -- Command specifiying status being requested</param>
+            <returns>string -- value of status</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WinAmpController.AddFileToWinAmpPlaylist(System.String)">
+            <summary>
+                Addds the specified file to the WinAmp playlist
+            </summary>
+            <param name="sFileLocation">string -- Location of the file ot be added to the playlist (i.e.: c:\mp3\test.mp3)</param>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WinAmpController.Playlist_GenerateWinampM3U">
+            <summary>
+                Generates a new WINAMP.M3U from WinAmp, which is the current playlist that is loaded
+            </summary>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WinAmpController.Playlist_CurrentSongNumber">
+            <summary>
+                Retrieves the currently playing song ID from the playlist
+            </summary>
+            <returns>int -- Currently playing song Playlist ID</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WinAmpController.Playlist_MoveSongUp(System.Int32)">
+            <summary>
+                Moves the specified file up one slot in the playlist.
+            </summary>
+            <param name="iSongToMoveUp">int -- Playlist ID of song to move up</param>
+            <returns>bool -- true if move was successful</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WinAmpController.Playlist_MoveSongDown(System.Int32)">
+            <summary>
+                Moves the specified file down one slot in the playlist.
+            </summary>
+            <param name="iSongToMoveDown">int -- Playlist ID of song to move down</param>
+            <returns>bool -- true if move was successful</returns>
+        </member>
+        <member name="M:ENusbaum.Applications.WWWinamp.Classes.WinAmpController.GetWinampPlaylistPointer">
+            <summary>
+                Looks for a running copy of WinAmp and grabs the handle for the Playlist editor
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ENusbaum.Applications.WWWinamp.Classes.WinAmpController.COPYDATASTRUCT">
+            <summary>
+                Struct for copying data over to WinAmp for playlist entries
+            </summary>
+        </member>
+        <member name="T:ENusbaum.Applications.WWWinamp.Classes.WinAmpController.MediaFileInfo">
+            <summary>
+                Struct for file inforamtion, used in Playlist Entries
+            </summary>
+        </member>
+        <member name="P:ENusbaum.Applications.WWWinamp.Classes.WinampPlaylistItem.SongID">
+            <summary>
+                This file's Playlist ID
+            </summary>
+        </member>
+        <member name="P:ENusbaum.Applications.WWWinamp.Classes.WinampPlaylistItem.FilePath">
+            <summary>
+                This file's Playlist File Path
+            </summary>
+        </member>
+        <member name="P:ENusbaum.Applications.WWWinamp.Classes.WinampPlaylistItem.FileName">
+            <summary>
+                This is the file's name FILENAME.EXT
+            </summary>
+        </member>
+        <member name="P:ENusbaum.Applications.WWWinamp.Classes.WinampPlaylistItem.DisplayName">
+            <summary>
+                This file's Playlist Display Name (if available)
+            </summary>
+        </member>
+    </members>
+</doc>

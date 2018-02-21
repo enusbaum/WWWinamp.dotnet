@@ -1,0 +1,14 @@
+Alpha 14:
+- Enqueue to play next
+	- Cache items in playlist after current location
+	- Remove items from playlist after current location
+	- Add new item to playlist
+	- Add items from cahce to playlist
+
+- Improved Volume/Balance Conrol (0 == Left, 255 == Right)
+- Default Cover Image (perhaps a folder with an "X" or "NO COVER"?)
+
+Rules for Classes:
+
+Static Classes Exist Within: ENusbaum.Applications.WWWinamp.Classes
+Instance Classes Exist Within: ENusbaum.Applications.WWWinamp.Classes.<ClassName>

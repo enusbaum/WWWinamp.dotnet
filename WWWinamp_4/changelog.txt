@@ -1,0 +1,120 @@
+[version 4.1 Build 2787]
+EPN:
+- Added WCF Endpoint and Capability for WWWinamp (.NET 3.0 Runtime is now required)
+- Improved Media Library Size and Search Speed (Unlimited files supported)
+- Improved Playlist Handling and Search Speed (Unlimited playlist size supported)
+- Changed Configuration to use the .NET app.config file format
+- Minor UI Changes
+- Minor Bug Fixes
+
+[alpha 13]
+EPN:
+- Added ability to resize cover art (speficy &height and &width in the URL, max of 1024x768 output)
+- Added ability to specify default cover art image or to display the first JPEG found in the folder.]
+- Added ability to move items in the playlist up or down.
+- Added ability to specify server IP address in WWWINAMP.XML
+- Added compatibility support for Windows Vista
+- Improved the default skin provided by Seth D. (Thanks!)
+- Improved Media Library scanning (20% faster)
+- Improved Meida Library Size (200,000 files supported)
+- Improved Threading Model
+- Re-Fixed 'File Open' dialog popping up when trying to 'Play' an empty playlist ;-)
+- Code optimizations and clean up
+
+[alpha 12]
+EPN:
+- Recoded HTTP Request Parser (Can now support GET and POST)
+- Added Optional HTTP Compression (GZip or Deflate)
+- Added ability to display Access Log in Main Window
+- Added ability to allow directory listing in web browser
+- Added ability to password protect folders (.htpasswd)
+- Added ability to Save Playlists (?q=saveplaylist&value=filename)
+- Added Covert Art Support (?PlaylistCover&value=# & ?LibraryCover&value=-- displays cover.jpg in album folder)
+- Added command secuity. Now you may specify which commands may only be used by an Administrator
+- Improved Error handling in XML Config Loading
+- Increased HTTP receive buffer (now matches TCP socket receive buffer)
+- HTTP Server Errors (404, 403, etc., etc.) are now logged in the Access Log
+
+[alpha 11]
+EPN:
+- Added Ability to Re-Order playlist items (Move Up/Move Down)
+- Added New Tags (|CURRENT_SONG_TITLE|, |CONFIG_RESULTSPERPAGE|, etc.) See SDK.TXT for all tags.
+- Added ability to minimize on startup
+- Improved Error handling on XML loader
+- Fixed 'File Open' dialog popping up when trying to 'Play' an empty playlist
+
+[alpha 10]
+EPN:
+- Added Time Elapsed to Media Library Scan Results
+- Fixed 'Multiple Command' Error. URL Command variable was not being cleared on new request.
+- Minor UI Changes
+
+[alpha 9]
+EPN:
+- Changed startup code to speed up scanning large file libraries (20,000+ files)
+- Converted Application to Windows Form program
+- Added Support to Minimize WWWinamp to the System Tray
+- Added EXPIRAMENTAL Support for Server Side Include files (<!--#INCLUDE FILE="file"-->)
+- Added tag to retrieve currently playing song title
+- Added message if Library Search returns no results
+- Fixed Search Bug (When searching for term with multiple words, I.E.: "Tom Petty")
+- Recoded the URL Processing Function (Should be Quicker)
+
+[alpha 8]
+EPN:
+- Fixed Bug: 'Add Folder' command was not working properly.
+- Fixed Bug: Library Display dropping first file in a folder
+- Fixed File Paths. No longer required to put a trailing "\" at the end of a file path in the XML (Thanks Seth D.!)
+- Changed Default skin from 'WinAmp Look alike' to 'Classic WWWinamp'
+- Added File Download Command ("?q=download&value=ID")
+- Added several new Tags (see SDK.TXT)
+- Added ability to show all songs in Library (Search for "*")
+
+[alpha 7]
+EPN:
+- Added support for multiple Media Folders (seperated by a ; in the XML file)
+- Added URL Checking (Parent Pathing)
+- Changed WWWINAMP.XML format. Any item with multiple entries will be seperated by a semicolon ";"
+- Minor changes to WWWINAMP.XML Config File
+
+[alpha 6]
+EPN:
+- Added Shuffle Control ("?q=shuffle&value=1 for on, 2 for off")
+- Added Random Control ("?q=random&value=1 for on, 2 for off")
+- Fixed Search (Broke in Alpha 5)
+
+[alpha 5]
+EPN:
+- Added Volume Control ("?q=volume&value=0 to 255")
+- Added Balance Control ("?q=balance&value=0 to 255")
+- Added Admin Authentication ("?login")
+- Added Admin Tags |ADM| |/ADM|. Only users logged in as administrator will see information between those tags.
+- Added WWWinamp Shutdowm Command ("?q=shutdown")
+- Added Winamp Startup Command ("?q=startWinamp")
+- Added Winamp Shutdown Command ("?q=closeWinamp")
+- Added Winamp Restart Command ("?q=restartWinamp")
+- Changed how vairables are passed, format is now "?q=command&value=value", no longer uses other command types like "?w=" or "?p="
+- Fixed error if more than 100,000 media files are to be scanned (overflow)
+- Fixed error if ID for File was > 100,000 (overflow)
+- Cleaned up code and combined functions
+
+[alpha 4]
+EPN:
+- Fixed thread kill issue, should be handled more smoothly now
+
+[alpha 3]
+EPN:
+- Added Logging for User Access (Date Time, IP, Request, User Agent) to ACCESS.LOG
+- Added several more top level tags to get WinAMP status, Current Song Bitrate and Sample Rate.
+- Cleaned up Degbug Output
+
+[alpha 2]
+EPN:
+- Added Error Handling Function with Error Logging (ERROR.LOG)
+- Added Paging Ability
+- WWWinamp will not call a WinAMP API unless it has all handles.
+- Cleaned up Media Scanning during load
+
+[alpha 1]
+EPN:
+- First Compile.
