@@ -1,0 +1,1 @@
+<div class="playlist"> |NUMBER|.|ADM|[<a href="?q=removeFile&value=|ID|" title="Remove: |ITEM|">X</a>&nbsp;/&nbsp;<a href="?q=moveup&value=|ID|" title="Move |ITEM| up">&uarr;</a>&nbsp;/&nbsp;<a href="?q=movedown&value=|ID|" title="Move |ITEM| down">&darr;</a>] <a href="?q=jumpPos&value=|ID|">|/ADM||ITEM|</a></div>

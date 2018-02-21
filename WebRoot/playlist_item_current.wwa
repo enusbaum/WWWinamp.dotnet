@@ -1,0 +1,14 @@
+<br><a name="current"></a>
+<table class="CurrentBox">
+<tr>
+<td width="100">
+<img src="?PlaylistCover&value=|ID|&width=150&height=150" border="0">
+</td>
+<td class="Current">Currently |PLAYING_STATUS|<br />
+<a name="|PLAYING_STATUS|">
+<b class="CurrentSong">|NUMBER|. |ITEM|</b> (<a id="timeremaining">--:--</a>)
+<form name="form1" id="form1"><input name="elapsed" value="|CURRENT_SONG_ELAPSED|" type="hidden"></form>
+</a><br />
+<b>|NUMBER| of |PLAYLIST_SIZE| files</b> left in queue</td>
+</tr>
+</table><br>

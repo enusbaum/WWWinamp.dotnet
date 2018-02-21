@@ -1,0 +1,126 @@
+a:link, a:visited { color: #CCFFFF; text-decoration: none; }
+
+a:hover { color: #99FFFF; text-decoration: underline; }
+
+body.loading {
+	background-color: #667788;
+	color: #ffffff;
+	font-family: Verdana,Arial,sans-serif;
+	font-weight: bold;
+	text-align: center;
+	vertical-align:	center;
+	font-size: 250%;
+}
+
+body.wwwinamp_control {
+	background: #666666;
+	color: #ffffff;
+	margin: 0px;
+	padding: 0px;
+}
+
+body.www_left {
+	background-color: #667788;
+	color: #ffffff;
+}
+
+body.www_right {
+	background-color: #223344;
+	color: #ffffff;
+}
+
+hr { color: #000000; }
+
+img { border: #FFFF00; }
+
+input {
+	background-color: #445566;
+	border: 1px #FFFFFF solid;
+	color: #CCFFFF;
+	font-family: Verdana,Arial,sans-serif;
+	font-size: 90%;
+}
+
+table.1 {
+	border: 0px;
+	border-collapse: collapse;
+	width: 100%;
+	padding: 5px;
+}
+
+td {
+	font-family: Verdana,Arial,sans-serif;
+	font-size: 60%;
+	vertical-align: middle;
+}
+
+td.ca{ vertical-align: top; width: 1px; }
+
+td.l { font-size: 100%; vertical-align: top; width: 100%; }
+
+td.ld {
+	background: #445566;
+	color: #CCCCCC;
+	font-family: Verdana,Arial,sans-serif;
+	font-size: 70%;
+	font-weight: bold;
+	padding: 1px;
+	vertical-align: center;
+}
+
+td.www_left { background-color: #224466; }
+
+td.www_right { background-color: #000000; }
+
+.current { vertical-align: top; }
+
+.currentbox {
+	background-color: #113355;
+	border: 1px solid;
+	padding: 4;
+	width: 100%;
+}
+
+.currentsong { color: #FFFFFF; }
+
+.footer, tt { font-family: Verdana,Arial,sans-serif; font-size: 60%; }
+
+.inactive { color: #999999; }
+
+.search {
+	font-family: Verdana,Arial,sans-serif;
+	font-size: 70%;
+	font-weight: bold;
+}
+
+.playlist {
+	background-color: #667788;
+	color: #ffffff;
+	padding-right : 1px;
+	font-size : 10pt;
+	font-family : Arial;
+	line-height : 16px;
+	overflow : hidden;
+}
+.library {
+	position : relative;
+	padding-right : 2px;
+	font-size : 10pt;
+	font-family : Arial;
+	color : #00F800;
+	line-height : 16px;
+	overflow : hidden;
+}
+
+.currentSongArea {
+	position : relative;
+	width : 150px;
+	height : 15px;
+	top : 25px;
+	left: 115px;
+	overflow : auto;
+	padding-right : 1px;
+	font-size : 14pt;
+	font-family : Arial;
+	color : #00F800;
+}

@@ -1,0 +1,118 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="/wwwinamp.css">
+		<SCRIPT Language="JavaScript">
+			function getURLVariable(name) {
+				var q = unescape(location.search.substring(1)).split(/[=&]/);
+				for (var j=0; j<q.length; j+=2) {
+					if (q[j] == name) {
+						return q[j+1];
+					}
+				}
+				return null;
+			}	
+			function nextPage(){
+				var searchTerm = getURLVariable('s');
+				var nextPage = getURLVariable('page');
+				if(nextPage == null){ nextPage = '1'; }
+				if(searchTerm == null){ searchTerm = '*'; }
+				nextPage++;
+				var currentURL = location.href.split(/[=?]/);
+				window.location = currentURL[0] + "?s=" + searchTerm + "&page=" + nextPage;
+			}
+			function previousPage(){
+				var searchTerm = getURLVariable('s');
+				var prevPage = getURLVariable('page');
+				if(searchTerm == null){ searchTerm = '*'; }
+				if(prevPage == null){ prevPage = '1'; }
+				prevPage--;
+				if(prevPage == 0){ prevPage = '1'; }
+				var currentURL = location.href.split(/[=?]/);
+				window.location = currentURL[0] + "?s=" + searchTerm + "&page=" + prevPage;
+			}	
+			function startnumber(){
+				var pagenumber = getURLVariable('page');
+				pagenumber--
+				if (pagenumber < 0){pagenumber = 0;}
+				var start = pagenumber * |CONFIG_RESULTSPERPAGE|
+				document.write(start);
+			}			
+			function endnumber(){
+				var pagenumber = getURLVariable('page');
+				if(pagenumber == null){ pagenumber = '1'; }
+				pagenumber--
+				if (pagenumber < 0){pagenumber = 0;}
+				var results = |SEARCH_RESULTS_SIZE|
+				var per = |CONFIG_RESULTSPERPAGE|
+				if( results == 0){var tot = |LIBRARY_SIZE|;}
+				else {var tot = results;}
+				var end = pagenumber * per + per
+				if (end > tot) {document.write(tot);}
+				else{document.write(end);}
+			}				
+			function totalnumber(){
+				var results = |SEARCH_RESULTS_SIZE|
+				if(results == 0){ document.write(|LIBRARY_SIZE|);}
+				else {document.write(results);}
+			}
+			function first(){
+				var pagenumber = getURLVariable('page');
+				var searchterm = getURLVariable('s');
+				if(pagenumber == null){ pagenumber = '1'; }
+				if(pagenumber == '1'){document.write('<span class="inactive">&lt;&lt;first </span>');}
+				else {document.write('<a href="www_right.html?s=' + searchterm + '&page=1"> &lt;&lt;first </a>');}
+				if (pagenumber == '1'){document.write('<span class="inactive"> &lt;prev</span>');}
+				else {document.write('<a href="javascript:previousPage();"> &lt;prev</a>');}
+			}
+			function last(){
+				var pagenumber = getURLVariable('page');
+				if(pagenumber == null){ pagenumber = '1'; }
+				if (pagenumber < 0){pagenumber = 0;}
+				var searchterm = getURLVariable('s');
+				if (|SEARCH_RESULTS_SIZE| == 0){ 
+					var lastpagecheck = |LIBRARY_SIZE| / |CONFIG_RESULTSPERPAGE|
+					var lastpage = Math.round( |LIBRARY_SIZE| / |CONFIG_RESULTSPERPAGE|)
+					}
+				else { 
+					var lastpagecheck = |SEARCH_RESULTS_SIZE| / |CONFIG_RESULTSPERPAGE| 
+					var lastpage = Math.round(|SEARCH_RESULTS_SIZE| / |CONFIG_RESULTSPERPAGE|)
+					}
+				if ( lastpage < lastpagecheck) { lastpage++ }
+				if (pagenumber == lastpage){document.write('<span class="inactive"> next&gt;&gt;</span>');}
+				else {document.write('<a href="javascript:nextPage();">next&gt; </a>');}
+				if(pagenumber == lastpage){document.write('<span class="inactive"> last&gt;&gt;</span>');}
+				else {document.write('<a href="www_right.html?s=' + searchterm + '&page=' + lastpage + '"> last&gt;&gt;</a>');}
+
+			}
+			function text(){
+				var searchterm = getURLVariable('s');
+				if (searchterm == '*'){document.write('');}
+				else {document.write('Searching for "' + searchterm + '" in ' + |LIBRARY_SIZE| + ' items.<br>');}
+			}
+		</SCRIPT>
+	</head>
+	<BODY CLASS="WWW_right">
+		<table border=0 cellspacing=0 cellpadding=3>
+			<tr valign="middle">
+				<form name="searchForm"><td width="100" height="17"><input class="textfield" value="" name="s"></td></form>
+				<a href="javascript:document.searchForm.submit();" >
+				<td><input value="Search" onclick="javascript:document.searchForm.submit();" type="button"></td>
+				<td><input type="button" value="All" onClick="window.location='/www_right.html?s=*'">
+				<td><input type="button" value="Rescan" onClick="window.location='/www_right.html?q=rescan'">
+			</tr>
+		</table><br>
+		<div class="search"> 
+			<SCRIPT Language="JavaScript">text()</script>
+			Showing <SCRIPT Language="JavaScript">startnumber()</script> to <SCRIPT Language="JavaScript">endnumber()</script> of <SCRIPT Language="JavaScript">totalnumber()</script> items.<br>
+			<SCRIPT Language="JavaScript">first()</script> | <SCRIPT Language="JavaScript">last()</script>
+		</div>
+		<table width="100%" border="0">
+			<td><div class="library">|LIBRARY|</div></td><br>
+		</table><br>
+		<div class="search"> 
+			<SCRIPT Language="JavaScript">text()</script>
+			Showing <SCRIPT Language="JavaScript">startnumber()</script> to <SCRIPT Language="JavaScript">endnumber()</script> of <SCRIPT Language="JavaScript">totalnumber()</script> items.<br>
+			<SCRIPT Language="JavaScript">first()</script> | <SCRIPT Language="JavaScript">last()</script>
+		</div>
+	</body>
+</html>

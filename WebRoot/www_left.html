@@ -1,0 +1,56 @@
+<html>
+<HEAD>
+	<noscript><META HTTP-EQUIV="Refresh" content="60;url=/www_left.html"></noscript>
+	<link rel="stylesheet" href="/wwwinamp.css">
+	<script type="text/javascript">
+		setTimeout("UpdateTime()",1000);
+		var length = |CURRENT_SONG_LENGTH| * 1000;
+		var elapsed = |CURRENT_SONG_ELAPSED|;
+		var nextrefresh = length - elapsed
+		var nextrefresh = nextrefresh + 2000
+		if(elapsed > 0){ 
+			setTimeout( "refresh()", nextrefresh );
+		}
+		function refresh(){
+			window.location.href = "/www_left.html";
+		}
+		window.onload=function(){window.location.href = "#current";}
+		
+		function UpdateTime()
+		{
+			var iSongElapsed = parseInt(document.form1.elapsed.value);
+			
+			if(iSongElapsed > (|CURRENT_SONG_LENGTH| * 1000)) 
+			{
+				document.getElementById("timeremaining").innerHTML = "--:--";
+			}
+			else
+			{
+				document.form1.elapsed.value = parseInt(document.form1.elapsed.value) + 1000;
+				var iSecondsElapsed = iSongElapsed / 1000;
+				
+				var iMinutesElapsed = Math.floor(iSecondsElapsed/60);
+				var iSecondsElapsed = Math.round(iSecondsElapsed - (iMinutesElapsed * 60));
+				if(iSecondsElapsed == 60) { iSecondsElapsed = 0; iMinutesElapsed = parseInt(iMinutesElapsed) + 1; }
+				if(iMinutesElapsed < 10) { iMinutesElapsed = "0" + iMinutesElapsed; }
+				if(iSecondsElapsed < 10) { iSecondsElapsed = "0" + iSecondsElapsed; }
+				document.getElementById("timeremaining").innerHTML = iMinutesElapsed + ":" + iSecondsElapsed;
+			}
+			if("|PLAYING_STATUS|" == "Playing") setTimeout("UpdateTime()",1000);
+		}
+	</SCRIPT>
+</HEAD>
+<BODY CLASS="WWW_left">
+<table width="100%" cellspacing="0" cellpadding="0" border="0" height="100%">
+|PLAYLIST|
+</table>
+
+
+<p><div class="footer"><a href="http://www.enusbaum.com/" target="_blank">WWWinamp Remote Control Server</a><br />
+WWWinamp v4.0<BR />
+(C) Copyright 2005-2007 <a href="http://www.enusbaum.com/" target="_blank">Eric Nusbaum</a>. All Rights Reserved<br />
+(C) Copyright 2002-2003 Halo 8 Productions, Inc. All Rights Reserved.<br />
+
+(C) Copyright 1998-2001 Nullsoft, Inc. All Rights Reserved.</div>
+</body>
+</html>
